@@ -11,23 +11,16 @@ import com.semanticsquare.thrillio.managers.BookmarkManager;
 import com.semanticsquare.thrillio.managers.UserManager;
 
 public class DataStore {
-	private static final int USER_BOOKMARK_LIMIT = 5;
-	private static final int BOOKMARK_COUNT_PER_TYPE = 5;
-	private static final int BOOKMARK_TYPES_COUNT = 3;
-	private static final int TOTAL_USER_COUNT = 5;
+	public static final int USER_BOOKMARK_LIMIT = 5;
+	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
+	public static final int BOOKMARK_TYPES_COUNT = 3;
+	public static final int TOTAL_USER_COUNT = 5;
 
 	private static User[] users = new User[TOTAL_USER_COUNT];
 
-	public static User[] getUsers() {
-		return users;
-	}
-
-	public static UserBookmark[] getUserBookmarks() {
-		return userBookmarks;
-	}
-
 	private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
 	private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
+	private static int bookmarkIndex = 0;
 
 	public static void loadData() {
 		loadUsers();
@@ -39,13 +32,13 @@ public class DataStore {
 	private static void loadUsers() {
 		users[0] = UserManager.getInstance().createUser(1000, "user0@semanticsquare.com", "test", "John", "M",
 				Gender.MALE, UserType.USER);
-		users[1] = UserManager.getInstance().createUser(1001, "user0@semanticsquare.com", "test", "Sam", "M",
+		users[1] = UserManager.getInstance().createUser(1001, "user1@semanticsquare.com", "test", "Sam", "M",
 				Gender.MALE, UserType.USER);
-		users[2] = UserManager.getInstance().createUser(1002, "user0@semanticsquare.com", "test", "Anita", "M",
-				Gender.MALE, UserType.USER);
-		users[3] = UserManager.getInstance().createUser(1003, "user0@semanticsquare.com", "test", "Sara", "M",
-				Gender.MALE, UserType.USER);
-		users[4] = UserManager.getInstance().createUser(1004, "user0@semanticsquare.com", "test", "Dheeru", "M",
+		users[2] = UserManager.getInstance().createUser(1002, "user2@semanticsquare.com", "test", "Anita", "M",
+				Gender.FEMALE, UserType.CHIEF_EDITOR);
+		users[3] = UserManager.getInstance().createUser(1003, "user3@semanticsquare.com", "test", "Sara", "M",
+				Gender.MALE, UserType.EDITOR);
+		users[4] = UserManager.getInstance().createUser(1004, "user4@semanticsquare.com", "test", "Dheeru", "M",
 				Gender.MALE, UserType.USER);
 	}
 
@@ -93,5 +86,17 @@ public class DataStore {
 				BookGenre.TECHNICAL, 4.5);
 		bookmarks[2][4] = BookmarkManager.getInstance().createBook(4004, "Effective Java Programming Language Guide",
 				2007, "Prentice Hall", new String[] { "Joshua Bloch" }, BookGenre.TECHNICAL, 4.9);
+	}
+
+	public static User[] getUsers() {
+		return users;
+	}
+
+	public static Bookmark[][] getBookmarks() {
+		return bookmarks;
+	}
+
+	public static void add(UserBookmark userBookmark) {
+		userBookmarks[bookmarkIndex++] = userBookmark;
 	}
 }
