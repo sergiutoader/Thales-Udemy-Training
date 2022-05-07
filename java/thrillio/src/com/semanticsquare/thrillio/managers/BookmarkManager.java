@@ -1,5 +1,8 @@
 package com.semanticsquare.thrillio.managers;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 import com.semanticsquare.thrillio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
@@ -7,6 +10,8 @@ import com.semanticsquare.thrillio.entities.Movie;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.entities.UserBookmark;
 import com.semanticsquare.thrillio.entities.WebLink;
+import com.semanticsquare.thrillio.util.HttpConnect;
+import com.semanticsquare.thrillio.util.IOUtil;
 
 public class BookmarkManager {
 
@@ -77,6 +82,22 @@ public class BookmarkManager {
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
 
+		if (bookmark instanceof WebLink) {
+
+			try {
+				String url = ((WebLink) bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(url);
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}
+			} catch (MalformedURLException | URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 		dao.saveBookmark(userBookmark);
 
 	}
@@ -90,12 +111,12 @@ public class BookmarkManager {
 
 	public void share(User user, Bookmark bookmark) {
 		bookmark.setSharedBy(user);
-		
+
 		System.out.println("Data to be shared: ");
 		if (bookmark instanceof Book) {
-			System.out.println(((Book)bookmark).getItemData());
+			System.out.println(((Book) bookmark).getItemData());
 		} else if (bookmark instanceof WebLink) {
-			System.out.println(((WebLink)bookmark).getItemData());
+			System.out.println(((WebLink) bookmark).getItemData());
 		}
 	}
 }
