@@ -1,0 +1,5 @@
+Fortune 0
+Fortune 1
+Fortune 2
+Fortune 3
+Fortune 4
