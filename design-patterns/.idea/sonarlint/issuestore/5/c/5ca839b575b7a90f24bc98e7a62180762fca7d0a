@@ -1,0 +1,10 @@
+
+n
+java:S3008"SRename this field "INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒâËşÿÿÿÿ
+T
+java:S2168	"9Remove this dangerous instance of double-checked locking.(—«·üÿÿÿÿ
+S
+java:S1854"=Remove this useless assignment to local variable "instance1".(ùéú´
+D
+java:S1481".Remove this unused "instance1" local variable.(ùéú´
+N	java:S106"9Replace this use of System.out or System.err by a logger.(±Øíˆ
