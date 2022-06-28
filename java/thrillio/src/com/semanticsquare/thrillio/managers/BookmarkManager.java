@@ -2,6 +2,7 @@ package com.semanticsquare.thrillio.managers;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import com.semanticsquare.thrillio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
@@ -73,7 +74,7 @@ public class BookmarkManager {
 
 	}
 
-	public Bookmark[][] getBookmarks() {
+	public List<List<Bookmark>> getBookmarks() {
 		return dao.getBookmarks();
 	}
 

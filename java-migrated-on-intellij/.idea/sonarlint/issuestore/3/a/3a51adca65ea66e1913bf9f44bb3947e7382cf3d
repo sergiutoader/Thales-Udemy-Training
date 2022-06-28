@@ -1,0 +1,12 @@
+
+E
+java:S3740"/Provide the parametrized type for this generic.(âó¥­
+b
+java:S1192"GDefine a constant instead of duplicating this literal "Walden" 3 times.(¯õØéûÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¢Û‹–üÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¤åŞ
+N	java:S106*"9Replace this use of System.out or System.err by a logger.(äüÃâ
+Q	java:S1251"<This block of commented-out lines of code should be removed.(†‘‚ä
+K
+java:S1144
+"0Remove this unused private "hashSetDemo" method.(£·—úüÿÿÿÿ
