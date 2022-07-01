@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.semanticsquare.thrillio.constants.BookGenre;
 import com.semanticsquare.thrillio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
@@ -47,7 +48,7 @@ public class BookmarkManager {
 		return movie;
 	}
 
-	public Book createBook(long id, String title, int publicationYear, String publisher, String[] authors, String genre,
+	public Book createBook(long id, String title, int publicationYear, String publisher, String[] authors, BookGenre genre,
 			double amazonRating) {
 		Book book = new Book();
 
