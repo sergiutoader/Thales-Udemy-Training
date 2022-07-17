@@ -15,6 +15,9 @@ import java.util.List;
 
 
 public class IOUtil {
+	
+	
+	private static final String BASE_LOCATION = "/Users/sergiu/Programming/ANUL-4/Thales/Thales-Udemy-Training/java/thrillio/pages/";
 
 	public static void read(List<String> data, String filename) {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
@@ -53,7 +56,7 @@ public class IOUtil {
 	}
 
 	public static void write(String webpage, long id) {
-		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/Users/sergiu/Programming/ANUL-4/Udemy/Thales-Udemy-Training/java/thrillio/pages/" + String.valueOf(id) + ".html"), "UTF-8"))) {
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(BASE_LOCATION + String.valueOf(id) + ".html"), "UTF-8"))) {
 			bw.write(webpage);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

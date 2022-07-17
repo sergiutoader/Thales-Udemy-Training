@@ -4,7 +4,16 @@ import com.semanticsquare.thrillio.partner.Shareable;
 
 public class WebLink extends Bookmark implements Shareable {
 	private String url;
-	private String host;
+	private String host;	
+	private String htmlPage;
+	private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;	
+	
+	public enum DownloadStatus {
+		NOT_ATTEMPTED,
+		SUCCESS,
+		FAILED,
+		NOT_ELIGIBLE; // not eligible for download
+	}
 
 	public String getUrl() {
 		return url;
@@ -29,7 +38,9 @@ public class WebLink extends Bookmark implements Shareable {
 
 	@Override
 	public boolean isKidFriendlyEligible() {
-		if (url.contains("porn") || host.contains("adult") || getTitle().contains("porn")) {
+		// TODO Auto-generated method stub
+		if (url.contains("porn") || getTitle().contains("porn")
+				|| host.contains("adult")) {
 			return false;
 		}
 		return true;
@@ -37,16 +48,30 @@ public class WebLink extends Bookmark implements Shareable {
 	
 	@Override
 	public String getItemData() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
+		builder.append("<item>");
+		    builder.append("<type>WebLink</type>");
+		    builder.append("<title>").append(getTitle()).append("</title>");
+		    builder.append("<url>").append(url).append("</url>");
+		    builder.append("<host>").append(host).append("</host>");
+		builder.append("</item>");
 		
-		sb.append("<item>");
-			sb.append("<type>WebLink</type>");
-			sb.append("<title>").append(getTitle()).append("</title>");
-			sb.append("<url>").append(url).append("</url>");
-			sb.append("<host>").append(host).append("</host>");
-		sb.append("</item>");
-		
-		
-		return sb.toString();
+		return builder.toString();
+	}
+	
+	public String getHtmlPage() {
+		return htmlPage;
+	}
+
+	public void setHtmlPage(String htmlPage) {
+		this.htmlPage = htmlPage;
+	}
+
+	public DownloadStatus getDownloadStatus() {
+		return downloadStatus;
+	}
+
+	public void setDownloadStatus(DownloadStatus downloadStatus) {
+		this.downloadStatus = downloadStatus;
 	}
 }
